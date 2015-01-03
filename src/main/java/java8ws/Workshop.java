@@ -1,6 +1,5 @@
 package java8ws;
 
-import java8ws.utils.ExerciseNotImplementedException;
 import java8ws.utils.Person;
 import java8ws.utils.Person.Gender;
 
@@ -305,7 +304,12 @@ public class Workshop {
 
         final Person dummyPerson = new Person("Dummy", 1, Gender.MALE);
 
-        throw new ExerciseNotImplementedException();
+        final Optional<Person> anyPerson = persons.stream()
+                .filter(p -> p.getName().equals(personName))
+                .sorted(Comparator.comparingInt(Person::getAge).reversed())
+                .findFirst();
+
+        return anyPerson.orElse(dummyPerson);
     }
 
     /**
