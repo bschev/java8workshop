@@ -228,7 +228,10 @@ public class Workshop {
      */
     public static long exercise07c_parallelReduce() {
 
-        throw new ExerciseNotImplementedException();
+        return LongStream.rangeClosed(1L, SUM_UP_LIMIT)
+                .parallel()
+                .reduce(0, (s1, s2) -> s1 + s2); // Lambda Lösung
+//                .reduce(0, Long::sum); // Methodenreferenz Lösung
     }
 
     /**
