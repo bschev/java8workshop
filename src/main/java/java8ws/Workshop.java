@@ -171,8 +171,12 @@ public class Workshop {
      * @return das Ergebnis
      */
     public static long exercise07a_sequentialLoop() {
+        long sum = 0L;
+        for (int i = 1; i <= SUM_UP_LIMIT; i++) {
+            sum += (long) i;
+        }
 
-        throw new ExerciseNotImplementedException();
+        return sum;
     }
 
     /**
