@@ -4,6 +4,7 @@ import java8ws.utils.ExerciseNotImplementedException;
 import java8ws.utils.Person;
 import java8ws.utils.Person.Gender;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,17 @@ public class Workshop {
     public static List<String> exercise03a_removeIf() {
         final List<String> stingList = Arrays.asList("abcd", "efghijkl", "mnopq");
 
-        throw new ExerciseNotImplementedException();
+        // --------------------------------------------------------------------------------
+        // Da stringList auf einem Array aufbaut kann die Länge der Liste nicht verändert werden,
+        // daher müssen erst alle Elemente in eine neue Liste kopiert werden,
+        // bevor dann die Elemente mit zu vielen Zeichen gelöscht werden können.
+        //
+        // stingList.removeIf(...) -> java.lang.UnsupportedOperationException
+
+        final List<String> stingListCopy = new ArrayList<>(stingList);
+        stingListCopy.removeIf(v -> v.length() > 5);
+
+        return stingListCopy;
     }
 
     /**
