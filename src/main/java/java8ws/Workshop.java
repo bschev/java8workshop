@@ -6,6 +6,7 @@ import java8ws.utils.Person.Gender;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 /**
@@ -121,7 +122,9 @@ public class Workshop {
      */
     public static List<String> exercise05() {
 
-        throw new ExerciseNotImplementedException();
+        return IntStream.rangeClosed(1, 100)                    // Stream Source
+                .mapToObj(aIntValue -> "value " + aIntValue)    // Intermediate Operation
+                .collect(Collectors.toList());                  // Terminal Operation
     }
 
     /**
