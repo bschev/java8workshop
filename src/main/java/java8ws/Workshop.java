@@ -27,7 +27,23 @@ public class Workshop {
     public static void exercise01() {
         final List<String> stingList = Arrays.asList("abcd", "efgh", "ijkl");
 
-        throw new ExerciseNotImplementedException();
+        // --------------------------------------------------------------------------------
+        // Lambda Lösung mit Parameter-Typ und geschweiften Klammern für den Body
+
+        stingList.forEach(
+                (String v) -> {
+                    System.out.println(v);
+                });
+
+        // --------------------------------------------------------------------------------
+        // Lambda Lösung kurz
+
+        stingList.forEach(v -> System.out.println(v));
+
+        // --------------------------------------------------------------------------------
+        // Methodenreferenz Lösung
+
+        stingList.forEach(System.out::println);
     }
 
     /**
