@@ -5,6 +5,7 @@ import java8ws.utils.Person;
 import java8ws.utils.Person.Gender;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -188,8 +189,28 @@ public class Workshop {
      * @return das Ergebnis
      */
     public static long exercise07b_parallelForEachSum() {
+        // --------------------------------------------------------------------------------
+        // Naheliegender Lösungsansatz, die Verwendung einer lokalen Variablen.
+        // Dies funktioniert nicht da lokale Variablen aus einer Lambda heraus nicht verändert werden dürfen.
+        // Ein Grund dafür ist das bei paralleler Stream Verarbeitung Race Conditions auftreten würden.
 
-        throw new ExerciseNotImplementedException();
+        /*
+        long sum = 0L;
+        LongStream.rangeClosed(1, SUM_UP_LIMIT)
+        .forEach(i -> sum += i); // -> error
+        */
+
+        // --------------------------------------------------------------------------------
+        // Umgehung der Race Conditions unter Verwendung von AtomicLong.
+        // Dieser Ansatz funktioniert, wirkt sich aber stark auf die Performance aus!
+
+        final AtomicLong sum = new AtomicLong(0L);
+        LongStream.rangeClosed(1, SUM_UP_LIMIT)
+                .parallel()
+                .forEach(sum::addAndGet); // Methodenreferenz Lösung
+//                .forEach(i -> sum.addAndGet(i)); // Lambda Lösung
+
+        return sum.get();
     }
 
     /**
