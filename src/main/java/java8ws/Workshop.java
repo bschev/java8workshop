@@ -246,7 +246,9 @@ public class Workshop {
      */
     public static long exercise07d_parallelSum() {
 
-        throw new ExerciseNotImplementedException();
+        return LongStream.rangeClosed(1L, SUM_UP_LIMIT)
+                .parallel()
+                .sum();
     }
 
     /**
