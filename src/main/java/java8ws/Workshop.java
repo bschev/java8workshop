@@ -138,7 +138,10 @@ public class Workshop {
     public static List<String> exercise06a_sequential() {
         final List<String> stingList = Arrays.asList("abcd", "efghijkl", "mnopq");
 
-        throw new ExerciseNotImplementedException();
+        return stingList.stream()                                // Stream Source
+                .peek(v -> longRunningTask(500L, v))             // Intermediate Operation, peek führt eine Aktion für jedes Element im Steam aus.
+                .map(String::toUpperCase)                        // Intermediate Operation, map transformiert Elemente mithilfe einer Function<T, R>.
+                .collect(Collectors.toList());                   // Terminal Operation, hier werden die Daten aus einem Stream in eine Liste übertragen.
     }
 
     /**
