@@ -283,7 +283,9 @@ public class Workshop {
                 new Person("Marcus", 18, Gender.MALE), new Person("Maria", 48, Gender.FEMALE),
                 new Person("Andi", 32, Gender.MALE), new Person("Emil", 5, Gender.MALE));
 
-        throw new ExerciseNotImplementedException();
+        return persons.stream()
+                .sorted(Comparator.comparingInt(Person::getAge))
+                .collect(Collectors.groupingBy(Person::getGender));
     }
 
     /**
