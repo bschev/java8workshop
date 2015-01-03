@@ -156,7 +156,10 @@ public class Workshop {
     public static List<String> exercise06b_parallel() {
         final List<String> stingList = Arrays.asList("abcd", "efghijkl", "mnopq");
 
-        throw new ExerciseNotImplementedException();
+        return stingList.parallelStream()
+                .peek(v -> longRunningTask(500L, v))
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 
     private static final long SUM_UP_LIMIT = 2_000_000_000L;
