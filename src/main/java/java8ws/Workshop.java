@@ -56,7 +56,10 @@ public class Workshop {
     public static List<String> exercise02() {
         final List<String> stingList = Arrays.asList("abcd", "efgh", "ijkl");
 
-        throw new ExerciseNotImplementedException();
+//      stingList.replaceAll(v -> v.toUpperCase()); // Lambda Lösung
+        stingList.replaceAll(String::toUpperCase); // Methodenreferenz Lösung
+
+        return stingList;
     }
 
     /**
