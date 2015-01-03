@@ -263,7 +263,13 @@ public class Workshop {
                 new Person("Marcus", 18, Gender.MALE), new Person("Maria", 48, Gender.FEMALE),
                 new Person("Andi", 32, Gender.MALE), new Person("Emil", 5, Gender.MALE));
 
-        throw new ExerciseNotImplementedException();
+        return persons.stream()
+                .filter(person -> person.getAge() >= 18)
+                .filter(person -> person.getGender() == Gender.MALE)
+//                .map(person -> person.getName()) // Lambda Lösung
+                .map(Person::getName) // Methodenreferenz Lösung
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.joining(","));
     }
 
     /**
