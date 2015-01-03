@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 /**
@@ -93,7 +94,9 @@ public class Workshop {
     public static List<String> exercise03b_stream() {
         final List<String> stingList = Arrays.asList("abcd", "efghijkl", "mnopq");
 
-        throw new ExerciseNotImplementedException();
+        return stingList.stream()                         // Stream Source
+                .filter(v -> v.length() <= 5)             // Intermediate Operation
+                .collect(Collectors.toList());            // Terminal Operation
     }
 
     /**
